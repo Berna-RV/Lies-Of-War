@@ -1,0 +1,177 @@
+[gd_scene load_steps=22 format=3 uid="uid://cejsogo2gyn85"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_twws1"]
+[ext_resource type="Texture2D" uid="uid://n4m385u8p7ld" path="res://assets/Characters/Soldiers/Mounted/RedKnight.png" id="1_w0256"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebx3y"]
+atlas = ExtResource("1_w0256")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrg2o"]
+atlas = ExtResource("1_w0256")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln0mj"]
+atlas = ExtResource("1_w0256")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eirk"]
+atlas = ExtResource("1_w0256")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67tdg"]
+atlas = ExtResource("1_w0256")
+region = Rect2(96, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d56ju"]
+atlas = ExtResource("1_w0256")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbsd4"]
+atlas = ExtResource("1_w0256")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sdkj"]
+atlas = ExtResource("1_w0256")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luk1p"]
+atlas = ExtResource("1_w0256")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c55iq"]
+atlas = ExtResource("1_w0256")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vb0a"]
+atlas = ExtResource("1_w0256")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sioj7"]
+atlas = ExtResource("1_w0256")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8wcl"]
+atlas = ExtResource("1_w0256")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oujlm"]
+atlas = ExtResource("1_w0256")
+region = Rect2(32, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgyd0"]
+atlas = ExtResource("1_w0256")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssmuw"]
+atlas = ExtResource("1_w0256")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eac2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebx3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrg2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln0mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eirk")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67tdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d56ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbsd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sdkj")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luk1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c55iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vb0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sioj7")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8wcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oujlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgyd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssmuw")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44w24"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v71dg"]
+radius = 78.0577
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_twws1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eac2i")
+animation = &"walk_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_44w24")
+
+[node name="detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+shape = SubResource("CircleShape2D_v71dg")
+
+[node name="battle_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="number_of_soldiers" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -35.0
+offset_right = 19.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0.996078, 0.713726, 0.00392157, 1)
+text = "100"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="battle_timer" to="." method="_on_battle_timer_timeout"]
